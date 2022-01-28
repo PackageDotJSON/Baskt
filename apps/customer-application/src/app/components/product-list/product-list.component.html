@@ -1,0 +1,87 @@
+<div class="clear"></div> <br /><br /><br /><br />
+<div class="grid">
+  <div class="col-lg-9 col-md-9 col-sm-12">
+    <ng-container *ngIf="productsData$ | async as products; else loading">
+      <div class="grid">
+        <div
+          class="p-col-12 p-md-6 p-lg-3 pr-space"
+          *ngFor="let product of products"
+        >
+          <baskt-shop-products-card
+            #productsCardComponent
+            [product]="product"
+          ></baskt-shop-products-card>
+        </div>
+      </div>
+      <button
+        *ngIf="products?.length > 12"
+        id="loadbtn"
+        pButton
+        type="button"
+        (click)="loadMore()"
+      >
+        Load More...
+      </button>
+      <ng-container *ngIf="products?.length === 0">
+        <br /><br />
+        <div class="custom-svg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="120"
+            height="120"
+          >
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path
+              d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8
+          8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-3a5 5 0 0 1 10 0h-2a3 3 0 0 0-6 0H7zm1-6a1.5 1.5 0 1 1
+          0-3 1.5 1.5 0 0 1 0 3zm8 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
+              fill="rgba(0,0,0,.38)"
+            />
+          </svg>
+          <p id="custom-text">No products found against your filter</p>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-template #loading>
+      <div class="grid">
+        <div
+          class="p-col-12 p-md-6 p-lg-3 pr-space"
+          *ngFor="let items of skeletonList"
+        >
+          <p-card
+            [style]="{ height: '100px;', width: '215px', 'margin-left': '5%' }"
+            styleClass="cardShadow"
+          >
+            <baskt-skeleton
+              [skeletonSize]="'11em'"
+              [skeletonShape]="'square'"
+            ></baskt-skeleton>
+            <br />
+            <baskt-skeleton
+              [skeletonSize]="'1.9em'"
+              [skeletonShape]="'square'"
+            ></baskt-skeleton>
+            <br />
+            <baskt-skeleton
+              [skeletonSize]="'1.9em'"
+              [skeletonShape]="'square'"
+            ></baskt-skeleton>
+          </p-card>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="col-lg-3 col-md-3 col-sm-12">
+    <ng-container *ngIf="(isLogin$ | async) === false">
+      <baskt-shop-login-card></baskt-shop-login-card>
+      <br /><br />
+      <baskt-shop-carousel></baskt-shop-carousel>
+    </ng-container>
+    <ng-container *ngIf="(isLogin$ | async) === true">
+      <baskt-shop-cart-items-card></baskt-shop-cart-items-card>
+      <baskt-shop-favourite-products-card></baskt-shop-favourite-products-card>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+<form [formGroup]="employmentHistoryForm" (ngSubmit)="proceedNext()">
+  <div formGroupName="employmentHistory">
+    <div class="custom-block">
+      <span class="p-float-label">
+        <input
+          formControlName="employer"
+          type="text"
+          id="employer-name"
+          pInputText
+        />
+        <label for="employer-name">Employer</label>
+      </span>
+
+      <span class="p-float-label">
+        <input
+          formControlName="jobTitle"
+          type="text"
+          id="employer-jobtitle"
+          pInputText
+        />
+        <label for="employer-jobtitle">Job title</label>
+      </span>
+    </div>
+
+    <br />
+
+    <div class="custom-block">
+      <span class="p-float-label">
+        <p-calendar
+          formControlName="datesEmployed"
+          id="employer-date"
+          dateFormat="dd.mm.yy"
+        ></p-calendar>
+        <label for="employer-date">Date Employed</label>
+      </span>
+
+      <span class="p-float-label">
+        <p-inputMask
+          formControlName="workPhone"
+          id="employer-phone"
+          mask="9999999999"
+        ></p-inputMask>
+        <label for="employer-phone">Work Phone</label>
+      </span>
+    </div>
+
+    <br />
+
+    <div class="custom-block">
+      <span class="p-float-label">
+        <input
+          formControlName="supervisorName"
+          type="text"
+          id="employer-supervisor"
+          pInputText
+        />
+        <label for="employer-supervisor">Supervisor Name</label>
+      </span>
+
+      <span class="p-float-label">
+        <p-inputNumber
+          formControlName="endingPayRate"
+          mode="decimal"
+        ></p-inputNumber>
+        <label for="employer-pay-rate">Ending Pay Rate</label>
+      </span>
+
+      <span class="p-float-label">
+        <input
+          formControlName="address"
+          type="text"
+          id="employer-address"
+          pInputText
+        />
+        <label for="employer-address">Address</label>
+      </span>
+    </div>
+
+    <br />
+
+    <div class="custom-block">
+      <span class="p-float-label">
+        <input
+          formControlName="city"
+          type="text"
+          id="employer-city"
+          pInputText
+        />
+        <label for="employer-city">City</label>
+      </span>
+
+      <span class="p-float-label">
+        <input
+          formControlName="state"
+          type="text"
+          id="employer-state"
+          pInputText
+        />
+        <label for="employer-state">State</label>
+      </span>
+
+      <span class="p-float-label">
+        <p-inputMask
+          id="employer-pay-rate"
+          formControlName="zip"
+          mask="99999"
+        ></p-inputMask>
+        <label for="employer-pay-rate">Zip</label>
+      </span>
+    </div>
+    <br />
+    <p-checkbox
+      name="groupname"
+      value="val1"
+      (click)="termsAndConditions = true"
+    ></p-checkbox>
+    &nbsp;
+    <a (click)="displayConditions = true"
+      >I have read all terms and conditions</a
+    >
+    <br />
+    <p-checkbox
+      name="groupname"
+      value="val1"
+      (click)="privacyPolicy = true"
+    ></p-checkbox>
+    &nbsp;
+    <a (click)="displayPolicy = true">I have read the privacy policy</a>
+    <br /><br />
+    <button pButton type="submit">Next</button>
+  </div>
+</form>
+
+<p-dialog
+  header="Terms and Conditions"
+  [(visible)]="displayConditions"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+>
+  <baskt-shop-employment-static-terms-and-conditions></baskt-shop-employment-static-terms-and-conditions>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="displayConditions = false"
+      label="OK"
+      class="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="Privacy Policy"
+  [(visible)]="displayPolicy"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+>
+  <baskt-shop-privacy-rights></baskt-shop-privacy-rights>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="displayPolicy = false"
+      label="OK"
+      class="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>

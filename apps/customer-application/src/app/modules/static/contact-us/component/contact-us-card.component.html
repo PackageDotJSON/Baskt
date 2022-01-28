@@ -1,0 +1,165 @@
+<ng-container>
+  <p-toast position="top-right" [baseZIndex]="100"></p-toast>
+</ng-container>
+<div class="grid">
+  <div class="col">
+    <p-card
+      [style]="{
+        height: '100px;',
+        width: '100%',
+        'margin-left': '0%',
+        'margin-top': '3%'
+      }"
+      styleClass="cardShadow"
+    >
+      <ng-template pTemplate="header">
+        <br /><br />
+        <h4 class="text-left">Contact Us</h4>
+      </ng-template>
+
+      <ng-template pTemplate="body">
+        <form [formGroup]="contactUsForm">
+          <div class="custom-block">
+            <span class="p-float-label">
+              <input
+                id="user-name"
+                type="text"
+                pInputText
+                formControlName="userName"
+              />
+              <label for="user-name">Name</label>
+            </span>
+
+            <span
+              class="custom-span"
+              *ngIf="
+                !contactUsForm.get('userName').valid &&
+                contactUsForm.get('userName').touched
+              "
+              >Please enter a valid name</span
+            >
+
+            <span class="p-float-label">
+              <input
+                id="user-email"
+                type="text"
+                pInputText
+                formControlName="userEmail"
+              />
+              <label for="user-email">Email</label>
+            </span>
+
+            <span
+              class="custom-span"
+              *ngIf="
+                !contactUsForm.get('userEmail').valid &&
+                contactUsForm.get('userEmail').touched
+              "
+              >Please enter a valid email</span
+            >
+          </div>
+
+          <br />
+
+          <div class="custom-block">
+            <span class="p-float-label">
+              <p-inputMask
+                formControlName="userTelephone"
+                id="user-telephone"
+                mask="9999999999"
+              ></p-inputMask>
+              <label for="user-telephone">Telephone</label>
+            </span>
+
+            <span
+              class="custom-span"
+              *ngIf="
+                !contactUsForm.get('userTelephone').valid &&
+                contactUsForm.get('userTelephone').touched
+              "
+              >Please enter a valid location name</span
+            >
+
+            <span class="p-float-label">
+              <input
+                id="user-address"
+                type="text"
+                pInputText
+                formControlName="userAddress"
+              />
+              <label for="user-address">Address</label>
+            </span>
+
+            <span
+              class="custom-span"
+              *ngIf="
+                !contactUsForm.get('userAddress').valid &&
+                contactUsForm.get('userAddress').touched
+              "
+              >Please enter a valid address</span
+            >
+          </div>
+
+          <br />
+
+          <span class="p-float-label">
+            <input
+              id="user-subject"
+              type="text"
+              pInputText
+              formControlName="userSubject"
+            />
+            <label for="user-subject">Subject</label>
+          </span>
+
+          <span
+            class="custom-span"
+            *ngIf="
+              !contactUsForm.get('userSubject').valid &&
+              contactUsForm.get('userSubject').touched
+            "
+            >Please enter a valid subject</span
+          >
+
+          <br />
+
+          <div class="text-left">
+            <span class="p-float-label">
+              <textarea
+                id="user-reason"
+                [rows]="5"
+                [cols]="80"
+                pInputTextarea
+                formControlName="userReason"
+              ></textarea>
+              <label for="user-reason">Reason</label>
+            </span>
+
+            <span
+              class="custom-span"
+              *ngIf="
+                !contactUsForm.get('userReason').valid &&
+                contactUsForm.get('userReason').touched
+              "
+              >Please enter a valid reason</span
+            >
+          </div>
+        </form>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <button pButton [disabled]="disableButton" [routerLink]="homeUrl"
+          >Cancel</button
+        >
+        &nbsp;
+        <button
+          type="submit"
+          [disabled]="disableButton"
+          pButton
+          (click)="submitContactData()"
+          >Submit</button
+        >
+      </ng-template>
+    </p-card>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.text-left{
+    text-align: left;
+}
+.text-right,.cart-btn{
+    text-align: right;
+}
+.description {
+    text-align: center;
+  }
+  .product-item h5 {
+    color: #01a4b5;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .product-item p {
+    color: #1f1f1f;
+    font-size: 13px;
+  }
+  .product-text h5 {
+    font-size: 28px;
+    color: #a0d95f;
+}
+.text-end-dot{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+.p-card .p-card-content{
+  line-height: 31px;
+}
+.p-toast-message-content{
+  z-index: 9999;
+}

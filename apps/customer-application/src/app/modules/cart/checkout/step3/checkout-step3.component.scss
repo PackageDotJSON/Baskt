@@ -1,0 +1,23 @@
+.custom-block {
+  display: flex;
+  justify-content: space-between;
+}
+.custom-span{
+  color: red;
+  font-size: 12px;
+}
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+p-dropdown {
+  border: 1px solid #a6a6a6;
+}
+.custom-conditions {
+  margin: auto;
+  text-align: center;
+}
+#custom-anchor {
+  color: #0ca8b8;
+  text-decoration: underline;
+  cursor: pointer;
+}

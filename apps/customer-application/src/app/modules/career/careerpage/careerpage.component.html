@@ -1,0 +1,80 @@
+<div class="custom-top">
+  <div class="grid">
+    <div class="col-6">
+      <br /><br /><br /><br />
+      <h1>FLEXIBLE <b>GIGS TAILORED</b> JUST FOR YOU</h1>
+      <br />
+      <div class="custom-align">
+        <p-dropdown
+          [options]="jobPositions"
+          [(ngModel)]="selectedPosition"
+          (ngModelChange)="changeJobPosition()"
+          optionLabel="name"
+          optionValue="code"
+          optionDisabled="inactive"
+        ></p-dropdown>
+        <br />
+        <br />
+        <br />
+        <p-dropdown
+          [options]="jobLocations"
+          optionLabel="name"
+          optionValue="code"
+          optionDisabled="inactive"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="col-6">
+      <img src="assets/job-image-2.png" alt="person image" width="100%" />
+    </div>
+  </div>
+
+  <p-accordion>
+    <p-accordionTab header="About" [(selected)]="activeState[0]">
+      <baskt-shop-about-form
+        [aboutForm]="careerForm"
+        (eventEmitter)="getForm()"
+      ></baskt-shop-about-form>
+    </p-accordionTab>
+    <p-accordionTab header="Education" [(selected)]="activeState[1]">
+      <baskt-shop-education-form
+        [educationForm]="careerForm"
+        (eventEmitter)="getForm()"
+      ></baskt-shop-education-form>
+    </p-accordionTab>
+    <p-accordionTab header="Reference" [(selected)]="activeState[2]">
+      <baskt-shop-reference-form
+        [referenceForm]="careerForm"
+        (eventEmitter)="getForm()"
+      ></baskt-shop-reference-form>
+    </p-accordionTab>
+    <p-accordionTab header="Employment History" [(selected)]="activeState[3]">
+      <baskt-shop-employment-history-form
+        [employmentHistoryForm]="careerForm"
+        (eventEmitter)="getForm()"
+      ></baskt-shop-employment-history-form>
+    </p-accordionTab>
+    <p-accordionTab
+      header="Driver Information"
+      *ngIf="
+        selectedPosition === 'Driver' || selectedPosition === 'Truckdriver'
+      "
+      [(selected)]="activeState[4]"
+    >
+      <baskt-shop-driver-information-form
+        [driverInformationForm]="careerForm"
+        (eventEmitter)="getForm()"
+      ></baskt-shop-driver-information-form>
+    </p-accordionTab>
+  </p-accordion>
+
+  <div class="grid">
+    <div class="col-6">
+      <img src="assets/job-image.png" alt="person image" width="100%" />
+    </div>
+    <div class="col-6">
+      <br /><br /><br /><br />
+      <h1>WE ARE HERE TO <b>ALWAYS HELP</b> YOU</h1>
+    </div>
+  </div>
+</div>

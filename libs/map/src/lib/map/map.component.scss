@@ -1,0 +1,33 @@
+.map-container {
+  width: 95%;
+  height: 80%;
+  position: absolute;
+}
+
+.coordinates {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  position: absolute;
+  bottom: 82%;
+  left: 2%;
+  padding: 5px 10px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 18px;
+  border-radius: 3px;
+  display: none;
+}
+
+.store {
+  background: palevioletred;
+  color: white;
+  position: absolute;
+  bottom: 77%;
+  left: 2%;
+  padding: 5px 10px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  border-radius: 3px;
+  display: none;
+}

@@ -1,0 +1,83 @@
+<ng-container>
+  <p-toast position="top-right"></p-toast>
+</ng-container>
+<h3>Billing Details</h3>
+<div class="custom-bucks" *ngIf="basktBucks > 0">
+  <p>Baskt Bucks: {{ basktBucks | number: '1.2-2' | currency }}</p>
+  <button pButton (click)="useAllBucks()">Use All</button>
+  <span>| OR |</span> &nbsp; &nbsp;
+  <span class="p-input-icon-left">
+    <i class="pi pi-dollar"></i>
+    <input
+      type="number"
+      pInputText
+      placeholder="Baskt Bucks"
+      [(ngModel)]="userBasktBucks"
+      (ngModelChange)="useCalculatedBucks()"
+    />
+  </span>
+</div>
+<ng-container *ngIf="basktBucks > 0">
+  <input pInputText placeholder="Coupon Code" [(ngModel)]="couponCode" />
+  <button pButton (click)="validateCoupon()">Verify Coupon</button>
+</ng-container>
+<br />
+<ng-container *ngIf="activeRoute.currentRoute() | async as route">
+  <p-card
+    [style]="{
+      height: '100px;',
+      width: '100%'
+    }"
+    styleClass="cardShadow"
+  >
+    <div class="custom-checkout">
+      <p>Subtotal</p>
+      <p>Tax</p>
+      <p *ngIf="route !== checkOutStep1Url">Delivery</p>
+      <p *ngIf="userBasktBucks > 0">Baskt Bucks</p>
+      <p *ngIf="couponPrice > 0">Coupon</p>
+      <p>Total</p>
+    </div>
+    <div class="custom-checkout">
+      <p>{{ subTotalPrice | number: '1.2-2' | currency }}</p>
+      <p>{{ totalTax | number: '1.2-2' | currency }}</p>
+      <p *ngIf="route !== checkOutStep1Url">{{
+        deliveryFee | number: '1.2-2' | currency
+      }}</p>
+      <p *ngIf="userBasktBucks > 0">{{
+        userBasktBucks | number: '1.2-2' | currency
+      }}</p>
+      <p *ngIf="couponPrice > 0">{{
+        couponPrice | number: '1.2-2' | currency
+      }}</p>
+      <p>{{ totalPrice | number: '1.2-2' | currency }}</p>
+    </div>
+  </p-card>
+  <br /><br />
+  <div class="custom-button">
+    <ng-container>
+      <ng-container *ngIf="route === checkOutStep1Url">
+        <button
+          (click)="updateDeliveryFee()"
+          [routerLink]="checkOutStep2Url"
+          [state]="{
+            data: { standardFee: deliveryFee, expressFee: expressDeliveryFee }
+          }"
+          pButton
+          >Next</button
+        >
+      </ng-container>
+      <ng-container *ngIf="route === checkOutStep2Url">
+        <button
+          (click)="getBasktBucks()"
+          [routerLink]="checkOutStep3Url"
+          pButton
+          >Next</button
+        >
+      </ng-container>
+      <ng-container *ngIf="route === checkOutStep3Url">
+        <button (click)="placeOrder()" pButton>Place Order</button>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>

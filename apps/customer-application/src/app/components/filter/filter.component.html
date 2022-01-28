@@ -1,0 +1,98 @@
+<div class="p-dropdown p-component p-dropdown-clearable filterBtn">
+  <button class="shaded-black"
+    pButton
+    type="button"
+    icon="pi pi-filter"
+    (click)="showDialog()"
+  >
+  </button><p-badge value = "x" *ngIf="(filterProducts$ | async)" (click) = "clearFilter()"></p-badge>
+</div>
+
+<p-dialog class="filter-dialogue"
+  position="topright"
+  header="Filter"
+  [(visible)]="display"
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [style]="{ width: '30vw' }"
+  [draggable]="false"
+  [resizable]="true"
+  [contentStyle]="{ overflow: 'visible' }"
+>
+  <div class="p-m-0">
+    <p>Price Range</p>
+    <input class="g-input" pInputText id="pricerange1" type="number" [(ngModel)]="minPrice" />
+    &nbsp;
+    <span>To</span>
+    &nbsp;
+    <input class="g-input" pInputText id="pricerange2" type="number" [(ngModel)]="maxPrice" />
+  </div>
+  <br />
+  <ng-template pTemplate="body">
+    <p-multiSelect
+      [options]="(categories$ | async)"
+      [showToggleAll]="false"
+      [(ngModel)]="selectedCategories"
+      class="multiselect-custom"
+      defaultLabel="Select Categories"
+      optionLabel="name"
+      display="chip"
+      [virtualScroll]="true"
+      [filter]="true"
+      [itemSize]="34"
+    >
+      <ng-template let-value pTemplate="(categories$ | async)">
+        <ng-container *ngIf = "(categories$ | async) as categories">
+          <ng-container *ngFor="let category of categories">
+            {{ category.name }}
+          </ng-container>
+          <ng-container *ngIf="!selectedCategories || selectedCategories.length === 0">
+            Select Categories
+          </ng-container>
+
+        </ng-container>
+      </ng-template>
+
+      <ng-template let-category pTemplate="selectedCategories">
+        <ng-container>
+          <div class="g-input">{{ category.name }}</div>
+        </ng-container>
+      </ng-template>
+    </p-multiSelect>
+    <br /><br />
+    <p-multiSelect
+      [options]="(brands$ | async)"
+      [showToggleAll]="false"
+      [(ngModel)]="selectedBrands"
+      class="multiselect-custom"
+      defaultLabel="Select Brands"
+      optionLabel="name"
+      display="chip"
+      [virtualScroll]="true"
+      [filter]="true"
+      [itemSize]="34"
+    >
+      <ng-template let-value pTemplate="(brands$ | async)">
+        <ng-container *ngIf = "(brands$ | async) as brands">
+          <ng-container *ngFor="let brand of brands">
+            {{ brand }}
+          </ng-container>
+          <ng-container *ngIf="!selectedBrands || selectedBrands.length === 0">
+            Select Brands
+          </ng-container>
+        </ng-container>
+      </ng-template>
+
+      <ng-template let-brand pTemplate="selectedBrands">
+        <div>
+          <div>{{ brand }}</div>
+        </div>
+      </ng-template>
+    </p-multiSelect>
+    <br /><br />
+    <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>&nbsp; &nbsp; bb
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton class="p-button-rounded" type="button" (click)="filterItems()"> Filter </button>
+  </ng-template>
+</p-dialog>

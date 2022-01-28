@@ -1,0 +1,46 @@
+.stepper
+{
+    margin-top: 7%;
+}
+/*step1 css start*/
+#stepper
+{
+    margin-top: 7%;
+}
+.customcheckout
+{
+    display: flex; 
+    justify-content:space-around;
+    margin-right: 5%;
+}
+.bbandcc
+{
+}
+.grid
+{
+    
+}
+.checkoutcontent{
+    margin: 2px 20px;
+    padding: 20px!important;
+}
+.left{
+    float: left;
+    text-align: left;
+}
+.right button.p-button{
+    background-color: $light-green!important;
+    border-color: $light-green!important;
+    border-radius: 30px;
+    width: 100px;
+    font-size: 12px;
+    float: right;
+    display: inline-block;
+    margin-left: 5px;
+}
+.right{
+    float: right;
+}
+/*step1 css end*/
+
+/*step2 css start*/

@@ -1,0 +1,46 @@
+<form class="grid login-outer-wrapper" [formGroup]="loginForm">
+  <p-toast position = "top-right"></p-toast>
+  <div class="container login-inner-wrapper">
+    <div class="cardShadow p-card p-component">
+      <h5 class="widget-head">Login</h5>
+      <span class="widget-label">Enter the login information</span>
+      <div class="text-fields">
+        <div class="form-group mobile-form-loc" *ngIf="step === 1">
+          <p-inputMask
+            placeholder="Enter Phone Number"
+            formControlName="phoneNumber"
+            mask="9999999999"
+          >
+          </p-inputMask>
+        </div>
+        <div class="form-group mobile-form-loc" *ngIf="step === 2">
+          <p-inputMask
+            placeholder="Enter Pin"
+            formControlName="pinNumber"
+            mask="9999"
+          ></p-inputMask>
+        </div>
+        <div class="button-left">
+          <button
+            class="p-button-rounded p-button p-component"
+            (click)="verifyPhone()"
+            *ngIf="step === 1; else verifyPin"
+            >Login <span class="p-button-label">&nbsp;</span></button
+          >
+          <ng-template #verifyPin>
+            <button
+              class="p-button-rounded p-button p-component"
+              (click)="verifyOtpPin()"
+              [disabled] = "disableButton"
+              >Verify Pin <span class="p-button-label">&nbsp;</span></button
+            >
+          </ng-template>
+        </div>
+        <p class="login-btm-txt widget-label">
+          Not Register?
+          <a class="font-weight-bold" [routerLink]="registerUrl">Register</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</form>

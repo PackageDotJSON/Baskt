@@ -1,0 +1,22 @@
+.custom-block {
+  display: flex;
+  justify-content: space-between;
+}
+.custom-map {
+  height: 400px;
+  width: 100px;
+}
+#map-input {
+  width: 80%;
+}
+i {
+  font-size: 1.2rem;
+}
+
+.custom-span{
+  color: red;
+  font-size: 12px;
+}
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}

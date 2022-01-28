@@ -1,0 +1,94 @@
+<div class="custom-top">
+  <h3>Order Tracking</h3>
+  <h5>USPS Tracking</h5>
+  <p>Order ID: {{ orderId }}</p>
+  <br />
+  <p-steps [model]="items" [activeIndex]="1"></p-steps>
+  <br />
+  <p-accordion>
+    <ng-container *ngIf="trackingData$ | async as trackingData">
+      <ng-container *ngFor="let trackingData of trackingData; let i = index">
+        <ng-container *ngIf="i === 0; else closedAccordions">
+          <p-accordionTab
+            [header]="'USPS Tracking Number: ' + trackingData.trackingNumber"
+            [selected]="true"
+          >
+            <p>USPS Tracking Number : {{ trackingData.trackingNumber }}</p>
+            <p
+              >Update Delivery Date:
+              {{ trackingData.currentStatusDate | date: 'MMMM d, y h:mm a' }}</p
+            >
+            <br />
+            <h5>Baskt Order Tracking</h5>
+            <p>Current Status</p>
+            <p>{{ trackingData.statusSummary }}</p>
+
+            <p-table [value]="trackingData.status">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th> Date & Time </th>
+                  <th> Status of Item </th>
+                  <th> Location </th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-tData>
+                <tr>
+                  <td>
+                    {{ tData.dateTime | date: 'MMMM d, y h:mm a' }}
+                  </td>
+                  <td>
+                    {{ tData.status }}
+                  </td>
+                  <td>
+                    {{ tData.location }}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-accordionTab>
+        </ng-container>
+
+        <ng-template #closedAccordions>
+          <p-accordionTab
+            [header]="'USPS Tracking Number: ' + trackingData.trackingNumber"
+          >
+            <p>USPS Tracking Number : {{ trackingData.trackingNumber }}</p>
+            <p
+              >Update Delivery Date:
+              {{ trackingData.currentStatusDate | date: 'MMMM d, y h:mm a' }}</p
+            >
+            <br />
+            <h5>Baskt Order Tracking</h5>
+            <p>Current Status</p>
+            <p>{{ trackingData.statusSummary }}</p>
+
+            <p-table [value]="trackingData.status">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th> Date & Time </th>
+                  <th> Status of Item </th>
+                  <th> Location </th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-tData>
+                <tr>
+                  <td>
+                    {{ tData.dateTime | date: 'MMMM d, y h:mm a' }}
+                  </td>
+                  <td>
+                    {{ tData.status }}
+                  </td>
+                  <td>
+                    {{ tData.location }}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-accordionTab>
+        </ng-template>
+      </ng-container>
+    </ng-container>
+  </p-accordion>
+</div>

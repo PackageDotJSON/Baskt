@@ -1,0 +1,17 @@
+.p-input-icon-left{
+    width: 100%;
+}
+.p-input-icon-left input,input {
+    padding: 0 9% 0 17px!important;
+    border-radius: 50px!important;
+    border: 1px solid #eeebeb!important;
+    color: #1f1f1f;
+    height: 43px;
+    width: 100%;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  input{
+    border-radius: 0px;
+  }

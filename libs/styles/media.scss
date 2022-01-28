@@ -1,0 +1,27 @@
+/*media query css start*/
+@media screen and (max-width: 767px) {
+    .mobile-search{
+      display: block;
+    }
+    .navbar-dark .navbar-toggler-icon {
+    }
+    .navbar-collapse{
+      background-color: $white;
+    }
+    .social-media-links ul li{
+      text-align: center;
+    }
+    .app ul li{
+      float: none;
+      text-align: center;
+      img{
+        width: 75%;
+        margin: auto;
+        text-align: center;
+      }
+    }
+    .footer-text{
+      text-align: center;
+    }
+  }
+  /*media query css end*/

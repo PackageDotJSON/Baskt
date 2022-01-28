@@ -1,0 +1,62 @@
+<form [formGroup]="educationForm" (ngSubmit)="proceedNext()">
+<div formGroupName="education">
+  <div class="custom-block">
+    <span class="p-float-label">
+      <input
+        formControlName="schoolName"
+        type="text"
+        id="user-school"
+        pInputText
+      />
+      <label for="user-school">School Name</label>
+    </span>
+
+    <span class="p-float-label">
+      <input
+        formControlName="location"
+        type="text"
+        id="user-location"
+        pInputText
+      />
+      <label for="user-location">Location</label>
+    </span>
+
+    <p-dropdown
+      formControlName="yearAttended"
+      [options]="years"
+      optionLabel="name"
+      optionValue="value"
+      placeholder="Select Year Attended"
+    ></p-dropdown>
+  </div>
+
+  <br />
+
+  <div class="custom-block">
+    <p-dropdown
+      formControlName="degree"
+      [options]="degreeReceived"
+      optionLabel="name"
+      placeholder="Is Degree Received"
+      optionValue="code"
+    ></p-dropdown>
+
+    <span class="p-float-label">
+      <input
+        formControlName="degreeTitle"
+        type="text"
+        id="user-degree"
+        pInputText
+      />
+      <label for="user-degree">Degree Title</label>
+    </span>
+
+    <span class="p-float-label">
+      <input formControlName="major" type="text" id="user-major" pInputText />
+      <label for="user-major">Major</label>
+    </span>
+  </div>
+  <br />
+  <button pButton type="submit">Next</button>
+  </div>
+</form>

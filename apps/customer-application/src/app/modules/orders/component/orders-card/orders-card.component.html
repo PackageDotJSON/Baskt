@@ -1,0 +1,110 @@
+<p-card
+  [style]="{
+    height: '100px;',
+    width: '600px',
+    'margin-left': '0%',
+    'margin-top': '3%'
+  }"
+  styleClass="cardShadow"
+>
+  <ng-template pTemplate="header">
+    <div class="text-right">
+      <i
+        class="pi pi-ellipsis-v"
+        (click)="showOrderDetails = !showOrderDetails"
+      ></i>
+
+      <p-card
+        [style]="{
+          height: '80px;',
+          width: '25%',
+          'margin-left': '100%',
+          'margin-top': '0%'
+        }"
+        styleClass="cardShadow"
+        *ngIf="showOrderDetails"
+      >
+        <ng-template pTemplate="header">
+          <div class="text-left">
+            <div
+              [routerLink]="orderDetailsUrl"
+              [queryParams]="{ order_id: this.customerOrder.orderId }"
+            >
+              &nbsp; <i class="pi pi-list"></i>&nbsp;
+              <span>Order Details</span>
+            </div>
+            <br />
+            <div
+              [routerLink]="trackOrderUrl"
+              [queryParams]="{ order_id: this.customerOrder.orderId }"
+              *ngIf="customerOrder.oc_status === orderInDelivery"
+            >
+              &nbsp; <i class="pi pi-arrow-up"></i>&nbsp;
+              <span>Track Order</span>
+            </div>
+            <br />
+            <div
+              (click)="showDialog()"
+              *ngIf="
+                customerOrder.oc_status === orderCompleted ||
+                customerOrder.oc_status === orderReturned
+              "
+            >
+              &nbsp; <i class="pi pi-star-o"></i>&nbsp;
+              <span>Rating</span>
+            </div>
+            <br />
+            <div
+              (click)="showContactDialog()"
+              *ngIf="
+                customerOrder.driverPhone !== driverPhone &&
+                customerOrder.oc_status !== orderCompleted &&
+                customerOrder.oc_status !== orderReturned
+              "
+            >
+              &nbsp; <i class="pi pi-phone"></i>&nbsp;
+              <span>Call</span>
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+    <div class="text-left">
+      <b>Order ID: {{ customerOrder.orderId }}</b>
+      <p id="order-title">{{ customerOrder.title }}</p>
+      <p>{{ customerOrder.orderDate | date: 'medium' }}</p>
+    </div>
+  </ng-template>
+  <div class="grid">
+    <img src="assets/dollar-symbol.png" />
+    <p>{{ customerOrder.totalAmount }}</p>
+    <img class="custom-img-align" src="assets/status.png" />
+    <p [ngStyle]="{ color: customerOrder.statusColor }">{{
+      customerOrder.status
+    }}</p>
+  </div>
+  <br />
+  <div class="grid">
+    <img src="assets/delivery.png" />
+    <p>{{ customerOrder.deliveryType }}</p>
+    <img class="custom-img-align" src="assets/pin.png" />
+    <p
+      class="white-space-nowrap overflow-hidden text-overflow-ellipsis"
+      style="width: 200px"
+      >{{ customerOrder.addressLocation }}</p
+    >
+  </div>
+</p-card>
+
+<p-dialog header="Rate Us" [(visible)]="display">
+  <baskt-shop-rating-card
+    [orderId]="customerOrder.orderId"
+    [ratingValue]="customerOrder.orderRating"
+    [feedBack]="customerOrder.orderFeedback"
+  ></baskt-shop-rating-card>
+</p-dialog>
+
+<p-dialog header="Contact" [(visible)]="displayContact">
+  <baskt-shop-contact-driver-card [driverPhone]="customerOrder.driverPhone">
+  </baskt-shop-contact-driver-card>
+</p-dialog>

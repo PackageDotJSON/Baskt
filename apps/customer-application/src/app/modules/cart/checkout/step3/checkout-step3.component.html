@@ -1,0 +1,155 @@
+<ng-container>
+  <p-toast position="top-right" [baseZIndex]="100"></p-toast>
+</ng-container>
+<br /><br />
+<h3>Payment</h3>
+<div class="grid">
+  <div class="col">
+    <p-card
+      [style]="{
+        height: '100px;',
+        width: '100%'
+      }"
+      styleClass="cardShadow"
+    >
+      <ng-template pTemplate="body">
+        <form [formGroup]="paymentForm">
+          <div class="custom-block">
+            <span class="p-float-label">
+              <input
+                id="cardholder-name"
+                formControlName="cardHolderName"
+                type="text"
+                pInputText
+              />
+              <label for="cardholder-name">CardHolder Name</label>
+              <span
+                class="custom-span"
+                *ngIf="
+                  !paymentForm.get('cardHolderName').valid &&
+                  paymentForm.get('cardHolderName').touched
+                "
+                >Please enter a valid card holder name</span
+              >
+            </span>
+
+            <p-dropdown
+              id="expiry-month"
+              [options]="months"
+              formControlName="expiryMonth"
+              optionLabel="name"
+              placeholder="Select a month"
+            ></p-dropdown>
+            <span
+              class="custom-span"
+              *ngIf="
+                !paymentForm.get('expiryMonth').valid &&
+                paymentForm.get('expiryMonth').touched
+              "
+              >Please select a valid expiration month</span
+            >
+
+            <p-dropdown
+              id="expiry-year"
+              [options]="years"
+              formControlName="expiryYear"
+              optionLabel="name"
+              placeholder="Select a year"
+            ></p-dropdown>
+            <span
+              class="custom-span"
+              *ngIf="
+                !paymentForm.get('expiryYear').valid &&
+                paymentForm.get('expiryYear').touched
+              "
+              >Please select a valid expiration Year</span
+            >
+          </div>
+          <br /><br />
+
+          <div class="custom-block">
+            <span class="p-float-label">
+              <p-inputMask
+                id="card-number"
+                formControlName="cardNumber"
+                mask="9999999999999999"
+                (ngModelChange)="checkCardType()"
+              ></p-inputMask>
+              <label for="card-number">Card Number</label>
+              <span
+                class="custom-span"
+                *ngIf="
+                  !paymentForm.get('cardNumber').valid &&
+                  paymentForm.get('cardNumber').touched
+                "
+                >Please enter a valid card number</span
+              >
+            </span>
+
+            <span class="p-float-label">
+              <p-inputMask
+                id="cvv-number"
+                formControlName="cvvNumber"
+                mask="9999"
+              ></p-inputMask>
+              <label for="cvv-number">CVV Number</label>
+              <span
+                class="custom-span"
+                *ngIf="
+                  !paymentForm.get('cvvNumber').valid &&
+                  paymentForm.get('cvvNumber').touched
+                "
+                >Please enter a valid cvv number</span
+              >
+            </span>
+          </div>
+
+          <div class="custom-block">
+            <span *ngIf="cardType === 'visa'">
+              <img src="assets/icons8-visa.svg" />
+            </span>
+            <span *ngIf="cardType === 'mastercard'">
+              <img src="assets/icons8-mastercard.svg" />
+            </span>
+            <span *ngIf="cardType === 'american-express'">
+              <img src="assets/icons8-american-express.svg" />
+            </span>
+            <span *ngIf="cardType === 'jcb'">
+              <img src="assets/icons8-jcb.svg" />
+            </span>
+            <span *ngIf="cardType === 'discover'">
+              <img src="assets/icons8-discover.svg" />
+            </span>
+          </div>
+        </form>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+<br /><br />
+
+<div class="custom-conditions">
+  <p>By Clicking Place Order I agree to the</p>
+  <p-checkbox name="groupname" value="val1"></p-checkbox>
+  <span
+    >&nbsp; I have read
+    <a id = "custom-anchor" (click)="displayConditions = true">terms and conditions</a></span
+  >
+</div>
+
+<p-dialog
+  header="Terms and Conditions"
+  [(visible)]="displayConditions"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+>
+  <baskt-shop-terms-and-conditions></baskt-shop-terms-and-conditions>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="displayConditions = false"
+      label="OK"
+      class="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>

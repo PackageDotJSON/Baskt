@@ -1,0 +1,19 @@
+<div class="custom-top">
+  <h3>Notifications</h3>
+  <br />
+  <ng-container *ngIf="customerNotifications$ | async as customerNotifications">
+    <ng-container *ngFor="let notify of customerNotifications">
+      <div class="grid">
+        <div class="col-fixed" style="width: 100px">
+          <img src="assets/logo_gray.PNG" height="70px" />
+        </div>
+        <div class="col">
+          <h4>{{ notify.notification_data.title }}</h4>
+          <p>{{ notify.notification_data.message }}</p>
+          <p class="text-right">{{ notify.date_sent | date: 'short' }}</p>
+          <hr />
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

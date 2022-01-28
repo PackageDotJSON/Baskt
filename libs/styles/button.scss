@@ -1,0 +1,140 @@
+.number {
+    display: inline-block;
+    color: #1f1f1f;
+    font-weight: 600;
+    vertical-align: top;
+    padding-top: 2px;
+}
+#loadbtn {
+  margin: auto;
+  text-align: center;
+  color: white!important;
+}
+.incrementbutton {
+  text-align: left;
+}
+.quantity {
+  margin-top: 5%;
+}  
+.quantity button {
+  background-color: transparent;
+  border-color: transparent;
+  color: #99a08e;
+  padding: 0px;
+  vertical-align: top;
+  line-height: 16px;
+}
+.quantity .box {
+  display: inline-block;
+  padding: 0px;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid #a0d95f;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;      
+}
+.p-button,.p-button.p-button-help, .p-buttonset.p-button-help > .p-button, .p-splitbutton.p-button-help > .p-button {
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color: #fff;
+    background: #ffb100!important;
+    border: 1px solid #ffb100!important;
+    box-shadow: none;
+    display: inline-block;
+    text-transform: inherit;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 13px;
+  }
+  .p-button.p-button-raised {
+    box-shadow: none;
+}
+  .p-button:hover,
+  .p-button.p-button-help:enabled:hover,
+  .p-buttonset.p-button-help > .p-button:enabled:hover,
+  .p-splitbutton.p-button-help > .p-button:enabled:hover {
+    color: #fff!important;
+    background: #ffb100!important;
+    border: 1px solid #ffb100!important;
+  }
+  .p-card-footer {
+    margin-bottom: 10px;
+    padding-top: 0px;
+  }
+  .p-button-text {
+    background-color: transparent;
+    color: #a0d95f;
+    border-color: transparent;
+    height: auto;
+    width: auto;
+    box-shadow: none;
+    padding: 0%;
+  }
+  .p-button.p-button-help.p-button-text,
+  .p-button.p-button-help.p-button-text:enabled:active {
+    color: #a0d95f !important;
+    background-color: transparent;
+  }
+  .p-button:enabled:active,
+  .p-button {
+    background: transparent;
+    border-color: transparent!important;
+    font-size: 1rem !important;
+    line-height: 10px;
+    margin: 0px;
+  }
+  .p-button.p-button-sm .p-button-icon {
+    font-size: 0.675rem;
+  }
+  .p-button.p-button-success.p-button-outlined,
+  .p-button.p-button-success.p-button-outlined:enabled:active,
+  .p-buttonset.p-button-success > .p-button.p-button-outlined:enabled:active,
+  .p-splitbutton.p-button-success > .p-button.p-button-outlined:enabled:active {
+    font-weight: 600;
+  }
+  .p-button.p-button-sm i {
+    color: #01a4b5;;
+  }
+  .p-rounded-box-btn{
+    background: #ffb100!important;
+    background-color: #ffb100!important;
+    border: 1px solid #ffb100!important;
+  }
+  svg
+  {
+    cursor: pointer;
+  }
+  .cart-btn {
+    margin-top: 10px;
+    margin: auto;
+    display: block;  
+  }
+  .p-dropdown{
+    border: none;
+  }
+  .p-badge{
+    background-color: rgb(160, 217, 95);
+  }
+  .addToCartBtn,.filterBtn button{
+    background: transparent!important;
+    border: none!important;
+  }
+  .addToCartBtn:hover,.filterBtn button:hover{
+    background: transparent!important;
+    border: none!important;
+    color: #1f1f1f!important;
+  }
+  .clearCart{
+    width: 100%;
+    border-radius: 30px;
+    padding: 8px;
+    background-color: #a0d95f!important;
+}
+.black{
+  color: black;
+}
+.shaded-black{
+  color: #1f1f1f;
+}

@@ -1,0 +1,130 @@
+<p-card
+  [style]="{ height: '100px;', width: '215px', 'margin-left': '0%' }"
+  styleClass="cardShadow"
+>
+  <ng-template pTemplate="header">
+    <button
+      pButton
+      *ngIf="(detectedRoute$ | async) === checkOutStep1"
+      (click)="removeFromCart(product)"
+    >
+      <i class="pi pi-times"></i>
+    </button>
+    <a
+      [routerLink]="[homeUrl, product?.upc]"
+      [queryParams]="{
+        name: product?.productName,
+        condition: product?.condition
+      }"
+    >
+      <img
+        *ngIf="(detectedRoute$ | async) !== favouriteUrl; else outOfStock"
+        [alt]="product.productName"
+        class="prodImgs"
+        baskt-shop-lazy-load
+        [srcImage]="product?.url"
+      />
+      <ng-template #outOfStock>
+        <img
+          *ngIf="product.quantity !== 0"
+          [alt]="product.productName"
+          class="prodImgs"
+          baskt-shop-lazy-load
+          [srcImage]="product?.url"
+        />
+        <ng-container *ngIf="product.quantity === 0">
+          <img
+            [alt]="product.productName"
+            class="prodImgs out-of-stock-img"
+            baskt-shop-lazy-load
+            [srcImage]="product?.url"
+          />
+          <p class="out-of-stock-text">Out Of Stock</p>
+        </ng-container>
+      </ng-template>
+    </a>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="grid cart-btn">
+      <div class="row">
+        <div
+          *ngIf="(detectedRoute$ | async) !== checkOutStep1"
+          class="col-lg-6 col-md-6 col-sm-12 svg-left"
+        >
+          <svg
+            _ngcontent-c10=""
+            height="22"
+            viewBox="0 0 24 24"
+            width="22"
+            xmlns="http://www.w3.org/2000/svg"
+            (click)="addToFavourites()"
+          >
+            <path _ngcontent-c10="" d="M0 0H24V24H0z" fill="none"></path>
+            <path
+              _ngcontent-c10=""
+              d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"
+              fill="rgba(160,217,95,1)"
+            ></path>
+          </svg>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <p class="price">{{ product.price | number: '1.2-2' | currency }}</p>
+          <i
+            *ngIf="(detectedRoute$ | async) === favouriteUrl"
+            class="pi pi-share-alt"
+          ></i>
+        </div>
+      </div>
+      <button
+        *ngIf="
+          (detectedRoute$ | async) !== checkOutStep1 && product.quantity !== 0
+        "
+        pButton
+        [style]="{ 'margin-left': '1em' }"
+        class="p-button-sm p-button-raised addToCartBtn shaded-black"
+        (click)="addToCart(product)"
+      >
+        Add to Cart &nbsp; <i class="pi pi-shopping-cart"></i>
+      </button>
+      <button
+        *ngIf="product.quantity === 0"
+        pButton
+        [style]="{ 'margin-left': '1em', 'width':'70%' }"
+        class="p-button-sm p-button-raised"
+        (click)="notifyMe(product)"
+      >
+        Notify me
+      </button>
+      <div class="clear"></div>
+      <ng-container *ngIf="isLogin$ | async">
+        <div class="quantity">
+          <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4 box">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-secondary"
+                [disabled]="this.productQuantity === this.product.quantity"
+                (click)="this.quantityOperations('add')"
+                >+
+              </button>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 number">
+              {{ productQuantity }}
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 box">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-secondary"
+                [disabled]="this.productQuantity <= 1"
+                (click)="this.quantityOperations('minus')"
+                >-
+              </button>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="clear"></div>
+    </div>
+  </ng-template>
+</p-card>

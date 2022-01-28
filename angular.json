@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "projects": {
+    "core": {
+      "projectType": "library",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "prefix": "baskt",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/core"],
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/core/src/**/*.ts",
+              "libs/core/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "customer-application": {
+      "projectType": "application",
+      "root": "apps/customer-application",
+      "sourceRoot": "apps/customer-application/src",
+      "prefix": "baskt-shop",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/customer-application",
+            "index": "apps/customer-application/src/index.html",
+            "main": "apps/customer-application/src/main.ts",
+            "polyfills": "apps/customer-application/src/polyfills.ts",
+            "tsConfig": "apps/customer-application/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/customer-application/src/favicon.ico",
+              "apps/customer-application/src/assets",
+              {
+                "input": "libs/core/src/assets",
+                "glob": "**/*",
+                "output": "assets/core"
+              }
+            ],
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/nova/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/primeflex/primeflex.css",
+              "apps/customer-application/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/customer-application/src/environments/environment.ts",
+                  "with": "apps/customer-application/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "customer-application:build:production"
+            },
+            "development": {
+              "browserTarget": "customer-application:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "customer-application:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/customer-application/src/**/*.ts",
+              "apps/customer-application/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/customer-application"],
+          "options": {
+            "jestConfig": "apps/customer-application/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "encryption": {
+      "projectType": "library",
+      "root": "libs/encryption",
+      "sourceRoot": "libs/encryption/src",
+      "prefix": "baskt-mono-repo",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/encryption"],
+          "options": {
+            "jestConfig": "libs/encryption/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/encryption/src/**/*.ts",
+              "libs/encryption/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "firebase": {
+      "projectType": "library",
+      "root": "libs/firebase",
+      "sourceRoot": "libs/firebase/src",
+      "prefix": "baskt-mono-repo",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/firebase"],
+          "options": {
+            "jestConfig": "libs/firebase/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/firebase/src/**/*.ts",
+              "libs/firebase/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "local-storage": {
+      "projectType": "library",
+      "root": "libs/local-storage",
+      "sourceRoot": "libs/local-storage/src",
+      "prefix": "baskt-mono-repo",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/local-storage"],
+          "options": {
+            "jestConfig": "libs/local-storage/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/local-storage/src/**/*.ts",
+              "libs/local-storage/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "map": {
+      "projectType": "library",
+      "root": "libs/map",
+      "sourceRoot": "libs/map/src",
+      "prefix": "baskt-mono-repo",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/map"],
+          "options": {
+            "jestConfig": "libs/map/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/map/src/**/*.ts",
+              "libs/map/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "socket": {
+      "projectType": "library",
+      "root": "libs/socket",
+      "sourceRoot": "libs/socket/src",
+      "prefix": "baskt-socket",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/socket"],
+          "options": {
+            "jestConfig": "libs/socket/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/socket/src/**/*.ts",
+              "libs/socket/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "customer-application"
+}

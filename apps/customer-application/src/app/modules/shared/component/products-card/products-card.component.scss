@@ -1,0 +1,11 @@
+.out-of-stock-img {
+  filter: blur(8px);
+  position: relative
+}
+.out-of-stock-text{
+  position: absolute;
+  margin-top: -6%;
+  margin-left: 4.5%;
+  color: red;
+  font-size: 1.3rem;
+}

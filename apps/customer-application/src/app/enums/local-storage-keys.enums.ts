@@ -1,0 +1,6 @@
+export const enum LOCAL_STORAGE_KEY {
+  TOKEN = 'TOKEN',
+  LOCATION_ID = 'LOCATION_ID',
+  ZIPCODE = 'ZIPCODE',
+  PHONE = 'PHONE_NO',
+}

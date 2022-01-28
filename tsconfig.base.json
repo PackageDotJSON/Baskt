@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@baskt-mono-repo/core": ["libs/core/src/index.ts"],
+      "@baskt-mono-repo/encryption": ["libs/encryption/src/index.ts"],
+      "@baskt-mono-repo/firebase": ["libs/firebase/src/index.ts"],
+      "@baskt-mono-repo/local-storage": ["libs/local-storage/src/index.ts"],
+      "@baskt-mono-repo/map": ["libs/map/src/index.ts"],
+      "@baskt-mono-repo/socket": ["libs/socket/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

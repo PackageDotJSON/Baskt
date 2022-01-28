@@ -1,0 +1,73 @@
+<form class="grid login-outer-wrapper" [formGroup]="registerForm">
+    <p-toast position="top-right"></p-toast>
+    <div class="container login-inner-wrapper">
+        <div class="cardShadow p-card p-component">
+            <button *ngIf = "step === 4"
+                    class = "p-button-rounded p-button p-component custom-button"
+                    (click) = "goToPreviousState()">
+                <i class = "pi pi-arrow-left"></i>
+            </button>
+            <h5 class="widget-head">Register</h5>
+            <span class="widget-label">Feel Free to Register</span>
+            <div class="text-fields">
+                <div class="form-group mobile-form-loc" *ngIf = "step === 1">
+                    <span>
+                        <p-inputMask
+                        formControlName = "zipCode"
+                        placeholder="Enter Zip Code"
+                        mask = "99999"></p-inputMask>
+                    </span>
+                </div>
+                <div class="form-group mobile-form-loc" *ngIf = "step === 2">
+                    <span>
+                        <p-inputMask
+                        formControlName = "phoneNumber"
+                        placeholder="Enter Phone No."
+                        mask = "9999999999"></p-inputMask>
+                    </span>
+                </div>
+                <div class="form-group mobile-form-loc" *ngIf = "step === 2">
+                    <span>
+                        <input
+                        pInputText type="email"
+                        formControlName = "userEmail"
+                        placeholder="Example@email.com"/>
+                    </span>
+                </div>
+                <div class="form-group mobile-form-loc" *ngIf = "step === 2">
+                    <span>
+                        <p-inputMask
+                        formControlName = "referralCode"
+                        placeholder="Refferal Code(Optional)"
+                        mask = "99999"></p-inputMask>
+                    </span>
+                </div>
+                <div class="form-group mobile-form-loc" *ngIf = "step === 3">
+                    <span>
+                        <p-inputMask
+                        formControlName = "pinNumber"
+                        placeholder="Enter OTP"
+                        mask = "9999"></p-inputMask>
+                    </span>
+                </div>
+                <div class="form-group mobile-form-loc" *ngIf = "step === 4">
+                    <span>
+                        <input
+                        pInputText type="email"
+                        formControlName = "userEmail"
+                        placeholder="Example@email.com"/>
+                    </span>
+                </div>
+                <div class="button-left" *ngIf = "step !== 4">
+                    <button class="p-button-rounded p-button p-component" (click) = "registerFunction()" [disabled] = "disableButton"> Next <span class="p-button-label">&nbsp;</span></button>
+                </div>
+                <div class="button-left" *ngIf = "step === 4">
+                    <button class="p-button-rounded p-button p-component" (click) = "subscribeEmail()" [disabled] = "disableButton"> Subscribe <span class="p-button-label">&nbsp;</span></button>
+                </div>
+                <p class="login-btm-txt widget-label">
+                    Have an account?
+                    <a class="font-weight-bold" [routerLink] = "loginUrl">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>

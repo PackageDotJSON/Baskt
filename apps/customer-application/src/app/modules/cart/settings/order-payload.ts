@@ -1,0 +1,21 @@
+export const ORDER_PAYLOAD = {
+  basktBucks: null,
+  cardHolder: '',
+  cardNumber: '',
+  cartItems: [],
+  cuponCode: null,
+  customerLocationId: '',
+  cvv: '',
+  deliveryTimeFrom: '',
+  deliveryTimeTo: '',
+  deliveryType: '',
+  distance: '',
+  expMonth: '',
+  expYear: '',
+  giftCode: '',
+  orderId: '',
+  phone: '',
+  type: '',
+  warehouseLocationId: '',
+  zipCode: ''
+}

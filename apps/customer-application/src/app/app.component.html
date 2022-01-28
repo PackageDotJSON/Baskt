@@ -1,0 +1,11 @@
+<ng-container>
+  <p-toast position="top-right"></p-toast>
+</ng-container>
+<baskt-header>
+  <baskt-shop-search search></baskt-shop-search>
+  <baskt-shop-filter filter></baskt-shop-filter>
+  <baskt-shop-icons icons></baskt-shop-icons>
+</baskt-header>
+<baskt-loader [detectRoutingOngoing]="true"></baskt-loader>
+<router-outlet></router-outlet>
+<baskt-footer></baskt-footer>

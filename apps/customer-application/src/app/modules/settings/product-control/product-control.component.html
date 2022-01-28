@@ -1,0 +1,29 @@
+<p-card
+  [style]="{
+    height: '100px;',
+    width: '100%'
+  }"
+  styleClass="cardShadow"
+>
+  <ng-template pTemplate="body">
+    <div class="custom-switch">
+      <p-inputSwitch
+        [(ngModel)]="beyondBestBuy"
+        (ngModelChange)="allowUpdate = !allowUpdate"
+      ></p-inputSwitch
+      >&nbsp; Beyond Best Buy &nbsp;
+      <i
+        class="pi pi-question-circle"
+        pTooltip="BBB Products are those that have reached their best buy dates. They are still safe to eat, just may not be as fresh as the others."
+      ></i>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      [disabled]="!allowUpdate"
+      (click)="setProductControlSettings()"
+      >Update</button
+    >
+  </ng-template>
+</p-card>

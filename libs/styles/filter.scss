@@ -1,0 +1,22 @@
+/*filter css start*/
+
+.p-dropdown {
+    display: inline-block;
+  }
+  
+  :host ::ng-deep .p-multiselect {
+    min-width: 20rem;
+    width: 100%;
+  }
+  
+  :host ::ng-deep .multiselect-custom-virtual-scroll .p-multiselect {
+    min-width: 20rem;
+    width: 22rem;
+  }
+  #pricerange1 {
+    width: 44.3%;
+  }
+  #pricerange2 {
+    width: 44.3%;
+  }
+  /*filter css end*/

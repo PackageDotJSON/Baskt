@@ -1,0 +1,13 @@
+<span *ngIf = "!disableButton">Already rated</span>
+<p-rating [(ngModel)]="ratingValue" [cancel]="false"></p-rating>
+<br />
+<span>Feedback</span>
+<br />
+<textarea
+  [rows]="5"
+  [cols]="30"
+  pInputTextarea
+  [(ngModel)]="feedBack"
+></textarea>
+<br />
+<button pButton [disabled] = "!disableButton" (click)="rateOrder()">Submit</button>

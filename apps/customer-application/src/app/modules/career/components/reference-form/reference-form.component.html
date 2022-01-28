@@ -1,0 +1,48 @@
+<form [formGroup]="referenceForm" (ngSubmit)="proceedNext()">
+  <div formGroupName="reference">
+    <div class="custom-block">
+      <span class="p-float-label">
+        <input
+          formControlName="name"
+          type="text"
+          id="reference-name"
+          pInputText
+        />
+        <label for="reference-name">Name</label>
+      </span>
+
+      <span class="p-float-label">
+        <input
+          formControlName="title"
+          type="text"
+          id="reference-title"
+          pInputText
+        />
+        <label for="reference-title">Title</label>
+      </span>
+    </div>
+    <br />
+    <div class="custom-block">
+      <span class="p-float-label">
+        <input
+          formControlName="company"
+          type="text"
+          id="reference-company"
+          pInputText
+        />
+        <label for="reference-company">Company</label>
+      </span>
+
+      <span class="p-float-label">
+        <p-inputMask
+          formControlName="phone"
+          mask="9999999999"
+          id="reference-phone"
+        ></p-inputMask>
+        <label for="reference-phone">Phone</label>
+      </span>
+    </div>
+    <br />
+    <button pButton type="submit">Next</button>
+  </div>
+</form>

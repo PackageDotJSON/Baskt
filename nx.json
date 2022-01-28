@@ -1,0 +1,55 @@
+{
+  "npmScope": "baskt-mono-repo",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "YTVjYzJkZTItYzIzNC00YTZmLWJjY2UtMjMzOGY1MjVmY2M2fHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "core": {
+      "tags": []
+    },
+    "customer-application": {
+      "tags": []
+    },
+    "encryption": {
+      "tags": []
+    },
+    "firebase": {
+      "tags": []
+    },
+    "local-storage": {
+      "tags": []
+    },
+    "map": {
+      "tags": []
+    },
+    "socket": {
+      "tags": []
+    }
+  }
+}

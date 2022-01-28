@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="clear"></div>
+  <br /><br /><br /><br /><br /><br />
+  <div class="grid">
+    <div class="col-lg-9 col-md-9 col-sm-12">
+      <div class="row">
+        <ng-container *ngIf="product">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="product-image">
+              <img [src]="product?.url" [alt]="product?.productName" />
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="product-text">
+              <h2>{{ product?.productName }}</h2>
+              <p>{{ product?.productDescription }}</p>
+              <h5>{{ product?.price | currency }}</h5>
+              <p>{{ product?.condition }}</p>
+              <button
+                class="
+                  p-button-rounded
+                  p-button-help
+                  p-button-raised
+                  p-button
+                  p-component
+                "
+                (click)="addToCart(product)"
+                [disabled]="buttonDisabled"
+              >
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="relatedProducts?.length">
+    <h5 class="widget-head text-left">Related Products</h5>
+    <div class="grid">
+      <div
+        class="p-col-12 p-md-6 p-lg-3 pr-space"
+        *ngFor="let relatedProduct of relatedProducts"
+      >
+        <ng-container>
+          <baskt-shop-products-card [product]="relatedProduct">
+          </baskt-shop-products-card>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>

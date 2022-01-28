@@ -1,0 +1,63 @@
+<ng-container *ngIf="isLogin$ | async">
+  <i
+    class="pi pi-shopping-cart"
+    pBadge
+    [value]="(cartItemsNumber$ | async)?.toString()"
+    [routerLink]="checkOutUrl"
+  ></i>
+  &nbsp;
+  <i
+    class="pi pi-bell"
+    (click)="this.showNotifications = !this.showNotifications"
+  ></i>
+  &nbsp;
+  <i class="pi pi-ellipsis-v" (click)="this.subIcons = !this.subIcons"></i>
+  &nbsp;
+</ng-container>
+
+<p-card
+  [style]="{
+    height: '100px;',
+    width: '300px',
+    'margin-left': '80%',
+    'margin-top': '1%',
+    position: 'absolute',
+    right: '10%',
+    top: '46%'
+  }"
+  styleClass="cardShadow"
+  *ngIf="showNotifications"
+>
+  <ng-container *ngIf="customerNotifications$ | async as customerNotifications">
+    <ng-container *ngFor="let notify of customerNotifications">
+      <span
+        ><b>{{ notify.notification_data.title }}</b></span
+      >
+      <p class="text-nowrap text-truncate" id="notify-message">{{
+        notify.notification_data.message
+      }}</p>
+      <hr />
+    </ng-container>
+    <a [routerLink]="notificationsUrl">View All</a>
+  </ng-container>
+</p-card>
+
+<p-card
+  [style]="{
+    height: '100px;',
+    width: '60px',
+    'margin-left': '90%',
+    'margin-top': '1%',
+    position: 'absolute',
+    right: '10%',
+    top: '46%'
+  }"
+  styleClass="cardShadow"
+  *ngIf="subIcons"
+>
+  <i class="pi pi-inbox" [routerLink]="ordersUrl"></i>
+  <i class="pi pi-map"></i>
+  <i class="pi pi-cog" [routerLink]="settingsUrl"></i>
+  <i class="pi pi-dollar" [routerLink]="giftsUrl"></i>
+  <i class="pi pi-sign-out" (click)="logOutUser()"></i>
+</p-card>

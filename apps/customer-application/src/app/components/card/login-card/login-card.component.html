@@ -1,0 +1,28 @@
+<p-card
+  [style]="{
+    height: '100px;',
+    width: '100%',
+    'margin-left': '0%',
+    'margin-top': '3%'
+  }"
+  styleClass="cardShadow"
+>
+  <ng-template pTemplate="header">
+    <br />
+    <h5 class="widget-head">Register Now</h5>
+    <span class="widget-label">Enter the zip code</span>
+    <button
+      pButton
+      class="p-button-rounded p-button-help p-button-raised"
+      [routerLink]="registerUrl"
+    >
+      Register
+    </button>
+    <img src="assets/register.png" alt="a sellable product" id="prodImgs" />
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <h6 class="footertext"
+      >Have an Account?<a [routerLink]="loginUrl">Login</a></h6
+    >
+  </ng-template>
+</p-card>

@@ -1,0 +1,157 @@
+<form [formGroup]="aboutForm" (ngSubmit)="proceedNext()">
+  <div class="custom-block">
+    <span class="p-float-label">
+      <input formControlName="name" type="text" id="user-name" pInputText />
+      <label for="user-name">Name</label>
+    </span>
+    <span class="p-float-label">
+      <p-inputMask
+        formControlName="socSecNumber"
+        id="social-security-no"
+        mask="999-99-9999"
+      ></p-inputMask>
+      <label for="social-security-no">Social Security Number</label>
+    </span>
+  </div>
+  <br />
+  <div class="custom-block">
+    <p-dropdown
+      formControlName="gender"
+      id="user-dropdown"
+      [options]="genderOptions"
+      optionLabel="name"
+      optionValue="code"
+      placeholder="Select Gender"
+    ></p-dropdown>
+
+    <span class="p-float-label">
+      <p-calendar
+        formControlName="birthDate"
+        id="user-calender"
+        dateFormat="dd.mm.yy"
+      ></p-calendar>
+      <label for="user-calender">Calender</label>
+    </span>
+  </div>
+  <br />
+  <div class="custom-block">
+    <span class="p-float-label">
+      <p-inputMask
+        formControlName="phone"
+        mask="9999999999"
+        id="user-phone"
+      ></p-inputMask>
+      <label for="user-phone">Phone Number</label>
+    </span>
+
+    <span class="p-float-label">
+      <input formControlName="email" type="email" id="user-email" pInputText />
+      <label for="user-email">Email</label>
+    </span>
+  </div>
+
+  <br />
+
+  <div class="custom-block">
+    <span class="p-float-label">
+      <input formControlName="city" type="text" id="user-city" pInputText />
+      <label for="user-city">City</label>
+    </span>
+
+    <span class="p-float-label">
+      <input formControlName="state" type="text" id="user-state" pInputText />
+      <label for="user-state">State</label>
+    </span>
+
+    <span class="p-float-label">
+      <p-inputMask
+        formControlName="zip"
+        mask="99999"
+        id="user-zip"
+      ></p-inputMask>
+      <label for="user-zip">Zip</label>
+    </span>
+  </div>
+
+  <br />
+
+  <div class="custom-block">
+    <span>U.S. Citizen?</span>
+    <span>Ever been convicted of a felony?</span>
+    <span>Willing to submit a drug test?</span>
+  </div>
+  <br />
+  <div class="custom-radio">
+    <div class="field-radiobutton">
+      <p-radioButton
+        formControlName="isUsCityzen"
+        id="user-citizen"
+        name="isUsCityzen"
+        value="Yes"
+        inputId="city1"
+      ></p-radioButton>
+      <label for="city1">&nbsp; Yes</label>
+    </div>
+    &nbsp; &nbsp; &nbsp;
+    <div class="field-radiobutton">
+      <p-radioButton
+        formControlName="isUsCityzen"
+        id="user-citizen"
+        name="isUsCityzen"
+        value="No"
+        inputId="city2"
+      ></p-radioButton>
+      <label for="city2">&nbsp; No</label>
+    </div>
+
+    <span class="custom-radio-spacing"></span>
+
+    <div class="field-radiobutton">
+      <p-radioButton
+        formControlName="isConvicted"
+        id="user-convicted"
+        name="isConvicted"
+        value="Yes"
+        inputId="city1"
+      ></p-radioButton>
+      <label for="city1">&nbsp; Yes</label>
+    </div>
+    &nbsp; &nbsp; &nbsp;
+    <div class="field-radiobutton">
+      <p-radioButton
+        formControlName="isConvicted"
+        id="user-convicted"
+        name="isConvicted"
+        value="No"
+        inputId="city2"
+      ></p-radioButton>
+      <label for="city2">&nbsp; No</label>
+    </div>
+
+    <span class="custom-radio-spacing"></span>
+
+    <div class="field-radiobutton">
+      <p-radioButton
+        formControlName="isDrugTest"
+        id="user-test"
+        name="isDrugTest"
+        value="Yes"
+        inputId="city1"
+      ></p-radioButton>
+      <label for="city1">&nbsp; Yes</label>
+    </div>
+    &nbsp; &nbsp; &nbsp;
+    <div class="field-radiobutton">
+      <p-radioButton
+        formControlName="isDrugTest"
+        id="user-test"
+        name="isDrugTest"
+        value="No"
+        inputId="city2"
+      ></p-radioButton>
+      <label for="city2">&nbsp; No</label>
+    </div>
+  </div>
+
+  <button pButton type = "submit">Next</button>
+</form>

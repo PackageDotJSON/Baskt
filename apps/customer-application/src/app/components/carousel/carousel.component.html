@@ -1,0 +1,33 @@
+<p-card
+  [style]="{ height: '100px;', width: '100%', 'margin-left': '0%' }"
+  styleClass="cardShadow"
+>
+  <ng-template pTemplate="header">
+    <br />
+    <h5 class="widget-head">How it works</h5>
+  </ng-template>
+  <p-carousel
+    [value]="carouselImages"
+    [style]="{ 'margin-top': '2em' }"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [autoplayInterval]="3000"
+  >
+    <ng-template let-item pTemplate="item">
+      <div class="product-item">
+        <div class="product-item-content">
+          <div class="p-mb-3">
+            <img
+              [src]="item"
+              alt="images to be displayed in carousel"
+              class="product-image"
+            />
+          </div>
+        </div>
+        <h5>{{ carouselHeadData[carouselImages | indexOf: item] }}</h5>
+        <p>{{ carouselBodyData[carouselImages | indexOf: item] }}</p>
+      </div>
+    </ng-template>
+  </p-carousel>
+</p-card>

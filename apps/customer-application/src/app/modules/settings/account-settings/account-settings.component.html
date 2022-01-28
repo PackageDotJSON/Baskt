@@ -1,0 +1,47 @@
+<div class="custom-card">
+  <p-card
+    [style]="{
+      height: '100px;',
+      width: '100%'
+    }"
+    styleClass="cardShadow"
+  >
+    <ng-template pTemplate="body">
+      <small>Phone</small> &nbsp;
+      <input
+        type="text"
+        [(ngModel)]="userPhone"
+        (ngModelChange)="valueChanged()"
+        pInputText
+        class="custom-input"
+        readonly
+      />
+      <br /><br />
+      <small>Email</small> &nbsp;
+      <input
+        type="text"
+        [(ngModel)]="userEmail"
+        (ngModelChange)="valueChanged()"
+        pInputText
+        class="custom-input"
+      />
+      <br /><br />
+      <small>Zip Code</small> &nbsp;
+      <input
+        type="text"
+        [(ngModel)]="userZipCode"
+        (ngModelChange)="valueChanged()"
+        pInputText
+        class="custom-input"
+      />
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        [disabled]="enableButton"
+        (click)="updateAccountSettings()"
+        >Update</button
+      >
+    </ng-template>
+  </p-card>
+</div>

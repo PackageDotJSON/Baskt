@@ -1,0 +1,254 @@
+<ng-container>
+  <p-toast position="top-right" [baseZIndex]="100"></p-toast>
+</ng-container>
+<br /><br />
+<h3>Address & Time</h3>
+<div class="grid">
+  <div class="col">
+    <p-card
+      [style]="{
+        height: '100px;',
+        width: '100%'
+      }"
+      styleClass="cardShadow"
+    >
+      <ng-template pTemplate="header">
+        <div class="custom-block">
+          <h6 class="text-left">Where to Deliver?</h6>
+          <p-button (click)="displayMaximizable = true">Location</p-button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="body" #formRef>
+        <form [formGroup]="checkOutForm">
+          <div class="custom-block">
+            <span class="p-float-label">
+              <input
+                id="location-name"
+                formControlName="locationName"
+                type="text"
+                pInputText
+              />
+              <label for="location-name">Location Name</label>
+              <span
+                class="custom-span"
+                *ngIf="
+                  !checkOutForm.get('locationName').valid &&
+                  checkOutForm.get('locationName').touched
+                "
+                >Please enter a valid location name</span
+              >
+            </span>
+
+            <span class="p-float-label">
+              <input
+                id="user-address"
+                formControlName="userAddress"
+                type="text"
+                pInputText
+              />
+              <label for="user-address">Address</label>
+              <span
+                class="custom-span"
+                *ngIf="
+                  !checkOutForm.get('userAddress').valid &&
+                  checkOutForm.get('userAddress').touched
+                "
+                >Please enter a valid address</span
+              >
+            </span>
+          </div>
+
+          <br /><br />
+          <div class="custom-block">
+            <span class="p-float-label">
+              <input
+                id="apartment-no"
+                formControlName="apartmentNo"
+                type="text"
+                pInputText
+              />
+              <label for="apartment-no">Apartment Number</label>
+              <span
+                class="custom-span"
+                *ngIf="
+                  !checkOutForm.get('apartmentNo').valid &&
+                  checkOutForm.get('apartmentNo').touched
+                "
+                >Please enter a valid apartment number</span
+              >
+            </span>
+
+            <span class="p-float-label">
+              <p-inputMask
+                id="zip-code"
+                formControlName="zipCode"
+                mask="99999"
+              ></p-inputMask>
+              <label for="zip-code">Zip Code</label>
+              <span
+                class="custom-span"
+                *ngIf="
+                  !checkOutForm.get('zipCode').valid &&
+                  checkOutForm.get('zipCode').touched
+                "
+                >Please enter a valid zipcode</span
+              >
+            </span>
+          </div>
+          <br /><br />
+
+          <div class="custom-block">
+            <span class="p-float-label">
+              <input
+                id="user-instructions"
+                formControlName="userInstructions"
+                type="text"
+                pInputText
+              />
+              <label for="user-instructions"
+                >Special Delivery Instructions</label
+              >
+            </span>
+          </div>
+        </form>
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="col-fixed" style="width: 300px">
+    <p-card
+      [style]="{
+        height: '100px;'
+      }"
+      styleClass="cardShadow"
+    >
+      <ng-template pTemplate="header">
+        <p class="text-center">Delivery</p>
+      </ng-template>
+      <p
+        ><b>{{ inputSwitch ? deliveryType[1] : deliveryType[0] }}</b>
+        <small>
+          {{
+            inputSwitch
+              ? (deliveryFee['expressFee'] | number: '1.2-2' | currency)
+              : (deliveryFee['standardFee'] | number: '1.2-2' | currency)
+          }}
+        </small>
+      </p>
+      <div
+        class="custom-block"
+        *ngIf="mapData?.distanceFromStore <= 98; else noExpressDelivery"
+      >
+        <p>Standard</p>
+        <p-inputSwitch
+          [(ngModel)]="inputSwitch"
+          (click)="changeDeliveryType()"
+        ></p-inputSwitch>
+        <p>Express</p>
+      </div>
+      <ng-container
+        *ngIf="inputSwitch === true && mapData?.distanceFromStore <= 98"
+      >
+        <p
+          ><small
+            >You will receive a USPS tracking number, after placing an
+            order</small
+          ></p
+        >
+        <p-slider
+          [(ngModel)]="inputSlider"
+          [min]="minTime"
+          [max]="maxTime"
+          [range]="true"
+          (ngModelChange)="verifyTime()"
+        ></p-slider>
+        <p
+          ><small>{{
+            deliveryTimeLimit.minTime + '-' + deliveryTimeLimit.maxTime
+          }}</small></p
+        >
+      </ng-container>
+      <ng-template #noExpressDelivery
+        ><p>Express delivery is not valid on this location</p></ng-template
+      >
+    </p-card>
+  </div>
+</div>
+
+<ng-container *ngIf="!displayMap">
+  <p-dialog
+    header="Select Location"
+    [(visible)]="displayMaximizable"
+    [modal]="true"
+    [style]="{ width: '800px', height: '600px' }"
+    [maximizable]="false"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <p>Please add new location or select from the list</p>
+    <div class="custom-block">
+      <input
+        id="map-input"
+        pInputText
+        placeholder="Please click on the map icon to select address"
+        readonly
+      />
+      <p-button (click)="displayMap = true"
+        ><i class="pi pi-map-marker"></i
+      ></p-button>
+    </div>
+    <br /><br />
+    <ng-container *ngTemplateOutlet="formRef"></ng-container>
+    <br /><br />
+    <b>Saved Locations</b>
+    <br /><br />
+    <ng-container *ngFor="let location of customerLocations">
+      <p
+        ><i class="pi pi-star"></i>&nbsp; <b>{{ location.name + ' : ' }}</b
+        >{{ location.address }}</p
+      >
+    </ng-container>
+
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="addCustomerLocation(); displayMaximizable = false"
+        label="Save"
+        class="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+</ng-container>
+
+<ng-container *ngIf="displayMap">
+  <p-dialog
+    header="Select Location"
+    [(visible)]="displayMaximizable"
+    [modal]="true"
+    [style]="{ width: '800px', height: '600px' }"
+    [maximizable]="false"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <baskt-mono-repo-map-box
+      [MapboxToken]="mapBoxToken"
+      [style]="mapBoxStyle"
+      [zoom]="mapBoxZoom"
+    ></baskt-mono-repo-map-box>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-arrow-left"
+        (click)="displayMap = false"
+        label="Back"
+        class="p-button-text"
+      ></p-button>
+      <p-button
+        icon="pi pi-check"
+        (click)="getMapLocation()"
+        label="Save"
+        class="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+</ng-container>

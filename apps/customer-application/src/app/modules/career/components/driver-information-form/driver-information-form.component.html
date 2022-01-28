@@ -1,0 +1,143 @@
+<form [formGroup]="driverInformationForm" (ngSubmit)="proceedNext()">
+  <div formGroupName="vehicleInformation">
+    <div class="custom-block">
+      <span class="p-float-label">
+        <p-inputMask
+          formControlName="year"
+          id="driver-year"
+          mask="9999"
+        ></p-inputMask>
+        <label for="driver-year">Year</label>
+      </span>
+
+      <span class="p-float-label">
+        <input formControlName="make" type="text" id="driver-make" pInputText />
+        <label for="driver-make">Make</label>
+      </span>
+
+      <span class="p-float-label">
+        <input
+          formControlName="model"
+          type="text"
+          id="driver-model"
+          pInputText
+        />
+        <label for="driver-model">Model</label>
+      </span>
+    </div>
+    <br />
+    <div class="custom-block">
+      <span class="p-float-label">
+        <input
+          formControlName="color"
+          type="text"
+          id="driver-colour"
+          pInputText
+        />
+        <label for="driver-colour">Colour</label>
+      </span>
+
+      <span class="p-float-label">
+        <p-inputMask
+          formControlName="doors"
+          id="driver-doors"
+          mask="9"
+        ></p-inputMask>
+        <label for="driver-doors">Doors</label>
+      </span>
+
+      <span class="p-float-label">
+        <input
+          formControlName="plateNumber"
+          type="text"
+          id="driver-plate-number"
+          pInputText
+        />
+        <label for="driver-plate-number">Plate Number</label>
+      </span>
+    </div>
+    <br />
+
+    <span>Upload Insurance Document</span>
+    <p-fileUpload
+      name="insuranceDocument[]"
+      url="./upload.php"
+      accept="image/*"
+      [auto]="true"
+      [maxFileSize]="1000000"
+      [customUpload]="true"
+      (uploadHandler)="fileUpload($event)"
+    ></p-fileUpload>
+    <br />
+    <span>Upload a copy of your drivers license</span>
+    <p-fileUpload
+      name="driversLicense[]"
+      url="./upload.php"
+      accept="image/*"
+      [auto]="true"
+      [maxFileSize]="1000000"
+      [customUpload]="true"
+      (uploadHandler)="fileUpload($event)"
+    ></p-fileUpload>
+
+    <br />
+    <p>Vehicle has seat belts?</p>
+
+    <div class="custom-radio">
+      <div class="field-radiobutton">
+        <p-radioButton
+          formControlName="seatBelts"
+          name="seatBelts"
+          value="Yes"
+          inputId="city1"
+        ></p-radioButton>
+        <label for="city1">&nbsp; Yes</label>
+      </div>
+      &nbsp; &nbsp; &nbsp;
+      <div class="field-radiobutton">
+        <p-radioButton
+          formControlName="seatBelts"
+          name="seatBelts"
+          value="No"
+          inputId="city2"
+        ></p-radioButton>
+        <label for="city2">&nbsp; No</label>
+      </div>
+    </div>
+    <br />
+  </div>
+  <div formGroupName="licenseInformation">
+    <div class="custom-block">
+      <span class="p-float-label">
+        <input
+          formControlName="licenseNumber"
+          id="driver-license-number"
+          type="text"
+          pInputText
+        />
+        <label for="driver-license-number">Drivers License Card Number</label>
+      </span>
+
+      <span class="p-float-label">
+        <input
+          formControlName="state"
+          type="text"
+          id="driver-state"
+          pInputText
+        />
+        <label for="driver-state">State</label>
+      </span>
+
+      <span class="p-float-label">
+        <p-calendar
+          id="driver-license-expiry"
+          formControlName="expiryDate"
+          dateFormat="dd.mm.yy"
+        ></p-calendar>
+        <label for="driver-license-expiry">Expiry Date</label>
+      </span>
+    </div>
+  </div>
+  <br />
+  <button pButton type="submit">Next</button>
+</form>

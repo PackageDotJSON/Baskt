@@ -1,0 +1,8 @@
+<div class="my-overlay" *ngIf="showOverlay">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+  <img
+    *ngIf="loadingService.loading$ | async"
+    src="../../../assets/icon_load2.gif"
+    alt="loader"
+  />
+</div>

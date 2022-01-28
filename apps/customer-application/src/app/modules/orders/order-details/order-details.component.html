@@ -1,0 +1,86 @@
+<div class="custom-top">
+  <h3>Order Details</h3>
+  <br />
+  <div class="text-right">
+    <button pButton (click)="refundAllItems()">Refund Order</button>
+  </div>
+  <br />
+  <h4>Ordered Items</h4>
+  <p-table [value]="orderDetails">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Refund</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-details>
+      <tr>
+        <td>
+          <p-image
+            [src]="details.url"
+            height="50px"
+            width="50px"
+            [preview]="true"
+          ></p-image>
+        </td>
+        <td>
+          {{ details.productName }}
+        </td>
+        <td>
+          {{ details.price | number: '1.2-2' }}
+        </td>
+        <td>
+          {{ details.quantity }}
+        </td>
+        <td> <i class="pi pi-trash" (click)="refundItem(details.upc)"></i> </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <br />
+  <br />
+  <h4>Billing Details</h4>
+
+  <p-table [value]="[[]]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>SubTotal</th>
+        <th>Tax</th>
+        <th>Delivery Fees</th>
+        <th>Baskt Bucks</th>
+        <th>Coupon</th>
+        <th>Refunded Amount</th>
+        <th>Total</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-billing>
+      <tr>
+        <td>
+          {{ subTotal | number: '1.2-2' | currency }}
+        </td>
+        <td>
+          {{ orderBilling?.totalTax | number: '1.2-2' | currency }}
+        </td>
+        <td>
+          {{ orderBilling?.deliveryFee | number: '1.2-2' | currency }}
+        </td>
+        <td>
+          {{ orderBilling?.appliedBucks | number: '1.2-2' | currency }}
+        </td>
+        <td>
+          {{ orderBilling?.couponCode | number: '1.2-2' | currency }}
+        </td>
+        <td>
+          {{ orderBilling?.refundTotal | number: '1.2-2' | currency }}
+        </td>
+        <td>
+          {{ orderBilling?.totalAmount | number: '1.2-2' | currency }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

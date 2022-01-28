@@ -1,0 +1,53 @@
+$font-primary: 'Quicksand';
+$primary: #ffb100;
+$secondary: #01a4b5;
+$black: #000;
+$white: #fff;
+$light-green: #a0d95f;
+$black-shaded: #1f1f1f;
+$red-light: #ea7878;
+$gray-light: #8a9bab;
+$black-icon: #191919;
+$bg-light-gray: #dedede66;
+$shadow-box: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+$shadow-header: 0 -3px 10px 5px rgb(0 0 0 / 5%);
+$shadow-footer: 0 0 17px -2px rgb(0 0 0 / 5%);
+$radius-btn-square: 4px;
+$radius-box: 15px;
+$radius-btn-round: 50px;
+$input-height: calc(1.5em + 0.75rem + 13px);
+$input-search: 43px;
+$header-height: 72px;
+$input-border: 1px solid #eeebeb;
+$input-selected-shadow: inset 0 0 0 -1px #01a4b5;
+$input-width-10: 10%;
+$input-width-20: 20%;
+$input-width-30: 30%;
+$input-width-40: 40%;
+$input-width-50: 50%;
+$input-width-60: 60%;
+$input-width-70: 70%;
+$input-width-80: 80%;
+$input-width-90: 90%;
+$input-width-100: 100%;
+$input-padding: 12px 20px;
+$heading-font: 21px;
+$para-font: 14px;
+$footer-icon-width: 51px;
+$footer-icon-height: 62px;
+$text-left: left;
+$text-right: right;
+.clear{
+  clear: both;
+}
+ul {
+  li {
+    list-style: none;
+    p {
+      text-align: center;
+      margin: 0;
+      color: $black;
+      font-size: 12px;
+    }
+  }
+}

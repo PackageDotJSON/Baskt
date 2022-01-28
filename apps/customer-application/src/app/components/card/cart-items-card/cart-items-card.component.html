@@ -1,0 +1,84 @@
+<p-card
+  [style]="{
+    height: '100px;',
+    width: '100%',
+    'margin-left': '0%',
+    'margin-top': '3%'
+  }"
+  styleClass="cardShadow"
+>
+  <ng-template pTemplate="header">
+    <br/>
+    <h5 class="widget-head">Your Baskt</h5>
+  </ng-template>
+  <ng-container *ngIf="cartItems$ | async as cartItems; else loading">
+    <ng-container *ngIf="cartItems?.length; else noItems">
+      <div class="row" *ngFor="let cItems of cartItems">
+        <div class="col-3">
+          <p-image
+            [src]="cItems.url"
+            [alt]="cItems.productName"
+            height="50px"
+            width="50px"
+            [preview]="true"
+          ></p-image>
+        </div>
+        <div class="col-6 text-left title">
+          <div class="text-end-dot">
+            {{ cItems.productName }}
+          </div>
+        </div>
+        <div class="col-3">{{ cItems.price | currency }}</div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-6 text-left title"> Total</div>
+        <div class="col-6 text-right">
+          {{ totalPrice | number: '1.2-2' | currency }}
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noItems>
+      <img
+        src="assets/no product.png"
+        alt="empty cart"
+        height="300px"
+        width="250px"
+      />
+      <p>No product added to the cart yet</p>
+    </ng-template>
+  </ng-container>
+  <ng-template pTemplate="footer">
+    <ng-container *ngIf="(cartItems$ | async) as cartItem; else loading">
+      <button
+        *ngIf="cartItem?.length !== 0"
+        pButton
+        class="p-button-rounded p-button-help p-button-raised"
+        [routerLink]="checkOutUrl">
+        Go to checkout
+      </button>
+    </ng-container>
+  </ng-template>
+  <ng-template #loading>
+    <div class="grid">
+      <div class="col-fixed" style="width: 20%">
+        <baskt-skeleton
+          [skeletonSize]="'3em'"
+          [skeletonShape]="'square'"
+        ></baskt-skeleton>
+      </div>
+      <div class="col-fixed" style="width: 60%">
+        <baskt-skeleton
+          [skeletonSize]="'3em'"
+          [skeletonShape]="'square'"
+        ></baskt-skeleton>
+      </div>
+      <div class="col-fixed" style="width: 20%">
+        <baskt-skeleton
+          [skeletonSize]="'3em'"
+          [skeletonShape]="'square'"
+        ></baskt-skeleton>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

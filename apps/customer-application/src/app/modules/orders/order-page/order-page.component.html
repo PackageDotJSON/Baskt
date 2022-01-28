@@ -1,0 +1,58 @@
+<div class="top">
+  <h3>Order Details</h3>
+  <ng-container *ngIf="customerOrders.length; else loading">
+    <div class="grid">
+      <div
+        class="p-col-12 p-md-6 p-lg-3 pr-space"
+        *ngFor="let orders of customerOrders"
+      >
+        <baskt-shop-orders-card
+          [customerOrder]="orders"
+        ></baskt-shop-orders-card>
+      </div>
+    </div>
+    <button pButton [disabled]="!showMoreButton" (click)="showMoreOrders()"
+      >Show More</button
+    >
+  </ng-container>
+  <ng-template #loading>
+    <div class="grid">
+      <div
+        class="p-col-12 p-md-6 p-lg-3 pr-space"
+        *ngFor="let items of skeletonList"
+      >
+        <p-card
+          [style]="{ height: '300px;', width: '570px', 'margin-left': '5%' }"
+          styleClass="cardShadow"
+        >
+          <div style="width: 60%">
+            <baskt-skeleton
+              [skeletonShape]="'square'"
+              [skeletonSize]="'1.3em'"
+            ></baskt-skeleton>
+            <br />
+            <baskt-skeleton
+              [skeletonShape]="'square'"
+              [skeletonSize]="'1.3em'"
+            ></baskt-skeleton>
+            <br />
+            <baskt-skeleton
+              [skeletonShape]="'square'"
+              [skeletonSize]="'1.3em'"
+            ></baskt-skeleton>
+          </div>
+          <br />
+          <baskt-skeleton
+            [skeletonShape]="'square'"
+            [skeletonSize]="'2em'"
+          ></baskt-skeleton>
+          <br />
+          <baskt-skeleton
+            [skeletonShape]="'square'"
+            [skeletonSize]="'2em'"
+          ></baskt-skeleton>
+        </p-card>
+      </div>
+    </div>
+  </ng-template>
+</div>
